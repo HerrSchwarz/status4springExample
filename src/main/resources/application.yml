@@ -1,0 +1,5 @@
+internal:
+  urls:
+    status: internal/status
+    version: internal/version
+    health: internal/health
