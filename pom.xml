@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.herrschwarz</groupId>
-  <artifactId>dsatus4SpringExample</artifactId>
+  <artifactId>status4SpringExample</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
 
