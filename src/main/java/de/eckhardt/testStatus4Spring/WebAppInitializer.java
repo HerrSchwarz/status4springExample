@@ -1,16 +1,15 @@
 package de.eckhardt.testStatus4Spring;
 
-import static java.lang.Boolean.TRUE;
-import static org.springframework.web.util.WebUtils.HTML_ESCAPE_CONTEXT_PARAM;
-
 import ch.qos.logback.classic.selector.servlet.LoggerContextFilter;
-
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+
+import static java.lang.Boolean.TRUE;
+import static org.springframework.web.util.WebUtils.HTML_ESCAPE_CONTEXT_PARAM;
 
 public final class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -31,7 +30,7 @@ public final class WebAppInitializer extends AbstractAnnotationConfigDispatcherS
 
   @Override
   protected String[] getServletMappings() {
-    return new String[] { "/test/*" };
+    return new String[] { "/*" };
   }
 
   @Override

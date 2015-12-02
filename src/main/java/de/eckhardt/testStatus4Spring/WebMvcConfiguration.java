@@ -1,16 +1,17 @@
 package de.eckhardt.testStatus4Spring;
 
-import de.herrschwarz.status4spring.StatusController;
-import de.herrschwarz.status4spring.inspectors.HostInspector;
+import com.github.herrschwarz.status4spring.StatusController;
+import com.github.herrschwarz.status4spring.inspectors.HostInspector;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.thymeleaf.resourceresolver.IResourceResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.resourceresolver.SpringResourceResourceResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -18,6 +19,11 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @Configuration
 @EnableWebMvc
 public class WebMvcConfiguration {
+
+  @Bean
+  IResourceResolver resourceResolver() {
+    return new SpringResourceResourceResolver();
+  }
 
   @Bean
   public PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
@@ -35,9 +41,10 @@ public class WebMvcConfiguration {
 
   @Bean
   TemplateResolver templateResolver() {
-    ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
+    TemplateResolver resolver = new TemplateResolver();
     resolver.setPrefix("classpath:/templates/");
     resolver.setSuffix(".html");
+    resolver.setResourceResolver(resourceResolver());
     resolver.setCharacterEncoding(UTF_8.name());
     resolver.setCacheable(false);
     return resolver;
